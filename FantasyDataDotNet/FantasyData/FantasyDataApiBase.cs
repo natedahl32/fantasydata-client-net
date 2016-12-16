@@ -184,5 +184,10 @@ namespace FantasyData
 
             throw new FantasyDataException("No subscription key set.");
         }
+
+        public virtual string ResourceType
+        {
+            get { return "stats"; }
+        }
     }
 }

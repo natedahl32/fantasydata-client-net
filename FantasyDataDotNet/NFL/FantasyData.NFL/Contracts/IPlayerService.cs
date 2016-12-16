@@ -17,5 +17,8 @@ namespace FantasyData.NFL.Contracts
 
         Player Get(int id);
         Task<Player> GetAsync(int id);
+
+        IEnumerable<Player> GetAvailablePlayers(string qs);
+        Task<IEnumerable<Player>> GetAvailablePlayersAsync(string qs);
     }
 }

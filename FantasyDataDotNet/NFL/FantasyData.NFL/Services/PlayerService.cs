@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace FantasyData.NFL.Services
 {
@@ -13,9 +14,14 @@ namespace FantasyData.NFL.Services
         private static readonly string FreeAgentsKey = "FreeAgents";
         private static readonly string FantasyPlayerKey = "FantasyPlayers";
         private static readonly string PlayerKey = "Player";
+        private static readonly string PlayersKey = "Players";
 
         public PlayerService(string baseUrl, string primarySubscriptionKey, string secondarySubscriptionKey)
             : base(baseUrl, primarySubscriptionKey, secondarySubscriptionKey)
+        { }
+
+        public PlayerService()
+            : this(Config.ApiBaseUrl.ToString(), Config.PrimarySubscriptionKey, Config.SecondarySubscriptionKey)
         { }
 
         /// <summary>
@@ -78,6 +84,22 @@ namespace FantasyData.NFL.Services
         {
             var url = string.Format("/{0}/{1}", PlayerKey, id);
             return await this.GetRequestAsync<Player>(url);
+        }
+
+        public IEnumerable<Player> GetAvailablePlayers(string qs)
+        {
+            var queryString = HttpUtility.ParseQueryString(qs);
+            var url = string.Format("/{0}?{1}", PlayersKey, queryString);
+            
+            return this.GetRequest<List<Player>>(url);
+        }
+
+        public async Task<IEnumerable<Player>> GetAvailablePlayersAsync(string qs)
+        {
+            var queryString = HttpUtility.ParseQueryString(qs);
+            var url = string.Format("/{0}?{1}", PlayersKey, queryString);
+
+            return await this.GetRequestAsync<List<Player>>(url);
         }
     }
 }

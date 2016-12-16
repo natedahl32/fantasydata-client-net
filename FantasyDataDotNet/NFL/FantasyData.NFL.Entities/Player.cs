@@ -13,9 +13,9 @@ namespace FantasyData.NFL.Entities
   {
     public Player()
     {
-      LatestNews = new News();
-      InjuryStatus = new Injury();
-      PlayerSeason = new PlayerSeason();
+      //LatestNews = new News();
+      //InjuryStatus = new Injury();
+      //PlayerSeason = new PlayerSeason();
     }
 
     public bool Active { get; set; }
@@ -59,9 +59,9 @@ namespace FantasyData.NFL.Entities
     public int UpcomingOpponentRank { get; set; }
     public string UpcomingSalary { get; set; }
     public int Weight { get; set; }
-
-    public News LatestNews { get; set; }
-    public Injury InjuryStatus { get; set; }
-    public PlayerSeason PlayerSeason { get; set; }
-  }
+    public int? RotoworldPlayerID { get; set; }
+    public int? FanDuelPlayerID { get; set; }
+    public int? DraftKingsPlayerID { get; set; }
+    public int? YahooPlayerID { get; set; }
+    }
 }
